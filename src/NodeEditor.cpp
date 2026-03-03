@@ -807,7 +807,7 @@ std::string act::nc::NodeEditor::buildParamUI() const
         switch (param.typeIndex) {
             case 0: // float
                 result += "\tImGui::SetNextItemWidth(m_drawSize.x);\n";
-                result += "\tif (ImGui::DragFloat(\"" + name + "\", &" + varName + ", 0.0f, 1.0f)) {\n";
+                result += "\tif (ImGui::DragFloat(\"" + name + "\", &" + varName + ")) {\n";
 				result += "\t\tprvntDrag = true;\n";
 				result += "\t}\n";
                 break;
@@ -837,7 +837,7 @@ std::string act::nc::NodeEditor::buildParamUI() const
                 result += "\t{\n";
                 result += "\t\tfloat tmp_" + name + " = double(" + varName + ");\n";
                 result += "\t\tImGui::SetNextItemWidth(m_drawSize.x);\n";
-                result += "\t\tif (ImGui::DragFloat(\"" + name + "\", &tmp_" + name + ", 0.0f, 1.0f)) {\n";
+                result += "\t\tif (ImGui::DragFloat(\"" + name + "\", &tmp_" + name + ")) {\n";
                 result += "\t\t\t" + varName + " = double(tmp_" + name + ");\n";
                 result += "\t\t\tprvntDrag = true;\n";
                 result += "\t\t}\n";
@@ -845,7 +845,7 @@ std::string act::nc::NodeEditor::buildParamUI() const
                 break;
             case 5: // vec2
                 result += "\tImGui::SetNextItemWidth(m_drawSize);\n";
-                result += "\tif (ImGui::DragFloat2(\"" + name + "\", &" + varName + ", 0.0f, 1.0f) {\n";
+                result += "\tif (ImGui::DragFloat2(\"" + name + "\", &" + varName + ") {\n";
 				result += "\t\tprvntDrag = true;\n";
 				result += "\t}\n";
                 break;
@@ -855,7 +855,7 @@ std::string act::nc::NodeEditor::buildParamUI() const
                 break;
             case 7: // vec3
                 result += "\tImGui::SetNextItemWidth(m_drawSize);\n";
-                result += "\tif (ImGui::DragFloat3(\"" + name + "\", &" + varName + ", 0.0f, 1.0f)) {\n";
+                result += "\tif (ImGui::DragFloat3(\"" + name + "\", &" + varName + ")) {\n";
 				result += "\t\tprvntDrag = true;\n";
 				result += "\t}\n";
                 break;
@@ -869,7 +869,7 @@ std::string act::nc::NodeEditor::buildParamUI() const
                 result += "\t{\n";
                 result += "\t\tci::vec3 euler_" + name + " = glm::eulerAngles(" + varName + ");\n";
                 result += "\t\tImGui::SetNextItemWidth(m_drawSize);\n";
-                result += "\t\tif (ImGui::DragFloat3(\"" + name + "\", &euler_" + name + ", -3.14f, 3.14f)) {\n";
+                result += "\t\tif (ImGui::DragFloat3(\"" + name + "\", &euler_" + name + ")) {\n";
                 result += "\t\t\t" + varName + " = ci::quat(euler_" + name + ");\n";
                 result += "\t\t\tprvntDrag = true;\n";
                 result += "\t\t}\n";
