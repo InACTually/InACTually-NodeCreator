@@ -823,15 +823,10 @@ std::string act::nc::NodeEditor::buildParamUI() const
 				result += "\t}\n";
                 break;
             case 3: // std::string
-                result += "\t{\n";
-                result += "\t\tchar buf[256];\n";
-                result += "\t\tstrncpy_s(buf, " + varName + ".c_str(), sizeof(buf) - 1);\n";
                 result += "\t\tImGui::SetNextItemWidth(m_drawSize.x);\n";
-                result += "\t\tif (ImGui::InputText(\"" + name + "\", buf, sizeof(buf))) {\n";
-                result += "\t\t\t" + varName + " = std::string(buf);\n";
+                result += "\t\tif (ImGui::InputText(\"" + name + "\", &" + varName +")) {\n";
                 result += "\t\t\tprvntDrag = true;\n";
                 result += "\t\t}\n";
-                result += "\t}\n";
                 break;
             case 4: // double
                 result += "\t{\n";
