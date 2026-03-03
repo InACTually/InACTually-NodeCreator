@@ -24,7 +24,7 @@
 #include <map>
 #include <functional>
 
-#include "./../../include/processing/PortType.hpp"
+#include "./../../../include/processing/PortType.hpp"
 
 namespace act {
 	namespace nc {
@@ -83,8 +83,8 @@ namespace act {
 
 			bool isBasicTemplate() const { return m_selectedProcNode == 0; }
 
-			void generateNode(const std::string& nodeName, const std::string& group);
-			void generateHppFile(const std::string& className, const std::string& nodeName);
+			void generateNode(const std::string& nodeName);
+			void generateHppFile(const std::string& className);
 			void generateCppFile(const std::string& className, const std::string& nodeName);
 			void generateFromTemplate(const std::string& className, const std::string& nodeName);
 

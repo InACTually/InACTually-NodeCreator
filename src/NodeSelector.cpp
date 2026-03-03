@@ -16,7 +16,7 @@
 
 #include "NodeSelector.hpp"
 
-#include "./../../3rd/IconFontCppHeaders/IconsFontAwesome5.h"
+#include "./../../../3rd/IconFontCppHeaders/IconsFontAwesome5.h"
 #include <algorithm>
 
 act::nc::NodeSelector::NodeSelector(std::map<std::string, std::vector<std::string>>& registryEntry,
@@ -49,10 +49,9 @@ void act::nc::NodeSelector::draw(float width, float height)
     // --- Add Group ---
     ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x - 40);
 
-    if (ImGui::InputTextWithHint("##NewGroup", "New group name...", m_newGroupNameBuf, IM_ARRAYSIZE(m_newGroupNameBuf)));
+    ImGui::InputTextWithHint("##NewGroup", "New group name...", m_newGroupNameBuf, IM_ARRAYSIZE(m_newGroupNameBuf));
     std::string newGroupName(m_newGroupNameBuf);
     ImGui::SameLine();
-    bool canAdd = !newGroupName.empty() && m_registryEntry.find(newGroupName) == m_registryEntry.end();
 
     if (ImGui::Button(ICON_FA_PLUS "##AddGroup")) {
         m_registryEntry[newGroupName] = std::vector<std::string>();

@@ -31,6 +31,6 @@ You can find the list of frameworks, code snippets, models, and other material i
 <br>
 
 ## 📜 License
-The InACTually Engine is licensed under the MIT License, see the [LICENSE](LICENSE). \
+The InACTually NodeCreator is licensed under the MIT License, see the [LICENSE](LICENSE). \
 Contact us, if you use InACTually (all tools or one of them) in your projects. 
 Would be nice to see, what lovely things you are creating :)

@@ -3,69 +3,102 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="..\..\..\Cinder\src\imgui\imgui_widgets.cpp">
-      <Filter>imgui</Filter>
+      <Filter>3rd\imgui</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Cinder\src\imgui\imgui.cpp">
-      <Filter>imgui</Filter>
+      <Filter>3rd\imgui</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Cinder\src\imgui\imgui_demo.cpp">
-      <Filter>imgui</Filter>
+      <Filter>3rd\imgui</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Cinder\src\imgui\imgui_draw.cpp">
-      <Filter>imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="imgui\backends\imgui_impl_glfw.cpp">
-      <Filter>imgui</Filter>
+      <Filter>3rd\imgui</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Cinder\src\imgui\imgui_impl_opengl3.cpp">
-      <Filter>imgui</Filter>
+      <Filter>3rd\imgui</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Cinder\src\imgui\imgui_tables.cpp">
-      <Filter>imgui</Filter>
+      <Filter>3rd\imgui</Filter>
     </ClCompile>
-    <ClCompile Include="NodeCreator.cpp" />
-    <ClCompile Include="NodeCreatorStyle.cpp" />
-    <ClCompile Include="NodeSelector.cpp" />
-    <ClCompile Include="NodeEditor.cpp" />
-    <ClCompile Include="VcxprojManager.cpp" />
-    <ClCompile Include="VcxprojFiltersManager.cpp" />
+    <ClCompile Include="3rd\imgui\backends\imgui_impl_glfw.cpp">
+      <Filter>3rd\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\NodeCreator.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\NodeCreatorStyle.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\NodeEditor.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\NodeSelector.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\VcxprojFiltersManager.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\VcxprojManager.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\Cinder\include\imconfig.h">
-      <Filter>imgui</Filter>
+      <Filter>3rd\imgui</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Cinder\include\imgui\imgui.h">
-      <Filter>imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="imgui\backends\imgui_impl_glfw.h">
-      <Filter>imgui</Filter>
+      <Filter>3rd\imgui</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Cinder\include\imgui_impl_opengl3.h">
-      <Filter>imgui</Filter>
+      <Filter>3rd\imgui</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Cinder\include\imgui\imgui_impl_opengl3_loader.h">
-      <Filter>imgui</Filter>
+      <Filter>3rd\imgui</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Cinder\include\imgui_internal.h">
-      <Filter>imgui</Filter>
+      <Filter>3rd\imgui</Filter>
     </ClInclude>
-    <ClInclude Include="NodeCreator.hpp" />
-    <ClInclude Include="NodeCreatorStyle.hpp" />
-    <ClInclude Include="NodeSelector.hpp" />
-    <ClInclude Include="NodeEditor.hpp" />
-    <ClInclude Include="VcxprojManager.hpp" />
-    <ClInclude Include="VcxprojFiltersManager.hpp" />
+    <ClInclude Include="3rd\imgui\backends\imgui_impl_glfw.h">
+      <Filter>3rd\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="include\NodeCreator.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\NodeCreatorStyle.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\NodeEditor.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\NodeSelector.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\VcxprojFiltersManager.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\VcxprojManager.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="imgui\misc\debuggers\imgui.natstepfilter">
-      <Filter>imgui</Filter>
+      <Filter>3rd\imgui</Filter>
     </None>
     <None Include="imgui\misc\debuggers\imgui.natvis">
-      <Filter>imgui</Filter>
+      <Filter>3rd\imgui</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="imgui">
+    <Filter Include="3rd">
+      <UniqueIdentifier>{4608e710-0af9-4c3f-a373-88eddcf82f50}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{082d5fcd-4118-42de-817e-a61a43f72271}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{9f3daacf-1ec2-4c3b-b9e5-f65d0c7aa0ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3rd\imgui">
       <UniqueIdentifier>{b0c7df3d-d837-48ca-9bea-4c969a5d0c43}</UniqueIdentifier>
     </Filter>
   </ItemGroup>

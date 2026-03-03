@@ -3,7 +3,7 @@
 The InACTually NodeCreator uses external resources licensed under open-source terms. \
 Below is a summary of included components in a pseudo random order without any further meaning.
 
-They are either lovely frameworks and code-snippets to be found in ./3rd/ of the InACTually Engine or with need to add them yourself (needed for creating and compiling).
+They are either lovely frameworks and code-snippets to be found in ./3rd/ (here or in the ./3rd/ of InACTually Engine) or you need to add them yourself (for creating and compiling).
 
 <br>
 

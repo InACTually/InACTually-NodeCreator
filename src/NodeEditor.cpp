@@ -15,7 +15,7 @@
 
 #include "NodeEditor.hpp"
 
-#include "./../../3rd/IconFontCppHeaders/IconsFontAwesome5.h"
+#include "./../../../3rd/IconFontCppHeaders/IconsFontAwesome5.h"
 #include <algorithm>
 #include <chrono>
 #include <fstream>
@@ -251,7 +251,7 @@ void act::nc::NodeEditor::draw(float height)
         m_registryEntry[selectedGroup].push_back(nodeName);
         std::sort(m_registryEntry[selectedGroup].begin(), m_registryEntry[selectedGroup].end());
         m_isRegistryModified = true;
-        generateNode(nodeName, selectedGroup);
+        generateNode(nodeName);
         clearAfterGenerate(nodeName);
         if (m_onGenerateCallback) m_onGenerateCallback();
     }
@@ -417,12 +417,12 @@ std::vector<act::nc::ParamEntry> act::nc::NodeEditor::getSortedParams() const
     return sorted;
 }
 
-void act::nc::NodeEditor::generateNode(const std::string& nodeName, const std::string& group)
+void act::nc::NodeEditor::generateNode(const std::string& nodeName)
 {
     std::string className = nodeName + "ProcNode";
 
     if (isBasicTemplate()) {
-        generateHppFile(className, nodeName);
+        generateHppFile(className);
         generateCppFile(className, nodeName);
     } else {
         generateFromTemplate(className, nodeName);
@@ -675,7 +675,7 @@ std::string act::nc::NodeEditor::buildFromParams() const
     return result;
 }
 
-void act::nc::NodeEditor::generateHppFile(const std::string& className, const std::string& nodeName)
+void act::nc::NodeEditor::generateHppFile(const std::string& className)
 {
     std::string filePath = procIncludeBasePath + className + ".hpp";
     std::ofstream out(filePath, std::ios::out | std::ios::trunc);
@@ -807,14 +807,20 @@ std::string act::nc::NodeEditor::buildParamUI() const
         switch (param.typeIndex) {
             case 0: // float
                 result += "\tImGui::SetNextItemWidth(m_drawSize.x);\n";
-                result += "\tprvntDrag |= ImGui::SliderFloat(\"" + name + "\", &" + varName + ", 0.0f, 1.0f);\n";
+                result += "\tif (ImGui::SliderFloat(\"" + name + "\", &" + varName + ", 0.0f, 1.0f)) {\n";
+				result += "\t\tprvntDrag = true;\n";
+				result += "\t}\n";
                 break;
             case 1: // int
                 result += "\tImGui::SetNextItemWidth(m_drawSize.x);\n";
-                result += "\tprvntDrag |= ImGui::InputInt(\"" + name + "\", &" + varName + ");\n";
+                result += "\tif (ImGui::InputInt(\"" + name + "\", &" + varName + ")) {\n";
+				result += "\t\tprvntDrag = true;\n";
+				result += "\t}\n";
                 break;
             case 2: // bool
-                result += "\tprvntDrag |= ImGui::Checkbox(\"" + name + "\", &" + varName + ");\n";
+                result += "\tif (ImGui::Checkbox(\"" + name + "\", &" + varName + ")) {\n";
+				result += "\t\tprvntDrag = true;\n";
+				result += "\t}\n";
                 break;
             case 3: // std::string
                 result += "\t{\n";
@@ -822,42 +828,48 @@ std::string act::nc::NodeEditor::buildParamUI() const
                 result += "\t\tstrncpy_s(buf, " + varName + ".c_str(), sizeof(buf) - 1);\n";
                 result += "\t\tImGui::SetNextItemWidth(m_drawSize.x);\n";
                 result += "\t\tif (ImGui::InputText(\"" + name + "\", buf, sizeof(buf))) {\n";
-                result += "\t\t\t" + varName + " = buf;\n";
+                result += "\t\t\t" + varName + " = std::string(buf);\n";
                 result += "\t\t\tprvntDrag = true;\n";
                 result += "\t\t}\n";
                 result += "\t}\n";
                 break;
             case 4: // double
                 result += "\t{\n";
-                result += "\t\tfloat tmp_" + name + " = static_cast<float>(" + varName + ");\n";
+                result += "\t\tfloat tmp_" + name + " = double(" + varName + ");\n";
                 result += "\t\tImGui::SetNextItemWidth(m_drawSize.x);\n";
                 result += "\t\tif (ImGui::SliderFloat(\"" + name + "\", &tmp_" + name + ", 0.0f, 1.0f)) {\n";
-                result += "\t\t\t" + varName + " = static_cast<double>(tmp_" + name + ");\n";
+                result += "\t\t\t" + varName + " = double(tmp_" + name + ");\n";
                 result += "\t\t\tprvntDrag = true;\n";
                 result += "\t\t}\n";
                 result += "\t}\n";
                 break;
             case 5: // vec2
-                result += "\tImGui::SetNextItemWidth(m_drawSize.x);\n";
-                result += "\tprvntDrag |= ImGui::SliderFloat2(\"" + name + "\", &" + varName + ".x, 0.0f, 1.0f);\n";
+                result += "\tImGui::SetNextItemWidth(m_drawSize);\n";
+                result += "\tif (ImGui::SliderFloat2(\"" + name + "\", &" + varName + ", 0.0f, 1.0f) {\n";
+				result += "\t\tprvntDrag = true;\n";
+				result += "\t}\n";
                 break;
             case 6: // ivec2
-                result += "\tImGui::SetNextItemWidth(m_drawSize.x);\n";
-                result += "\tprvntDrag |= ImGui::InputInt2(\"" + name + "\", &" + varName + ".x);\n";
+                result += "\tImGui::SetNextItemWidth(m_drawSize);\n";
+                result += "\tif (ImGui::InputInt2(\"" + name + "\", &" + varName + ") {\n";
                 break;
             case 7: // vec3
-                result += "\tImGui::SetNextItemWidth(m_drawSize.x);\n";
-                result += "\tprvntDrag |= ImGui::SliderFloat3(\"" + name + "\", &" + varName + ".x, 0.0f, 1.0f);\n";
+                result += "\tImGui::SetNextItemWidth(m_drawSize);\n";
+                result += "\tif (ImGui::SliderFloat3(\"" + name + "\", &" + varName + ", 0.0f, 1.0f)) {\n";
+				result += "\t\tprvntDrag = true;\n";
+				result += "\t}\n";
                 break;
             case 8: // Color
-                result += "\tImGui::SetNextItemWidth(m_drawSize.x);\n";
-                result += "\tprvntDrag |= ImGui::ColorEdit3(\"" + name + "\", &" + varName + ".r);\n";
+                result += "\tImGui::SetNextItemWidth(m_drawSize);\n";
+                result += "\tif (ImGui::ColorEdit3(\"" + name + "\", &" + varName + ")) {\n";
+				result += "\t\tprvntDrag = true;\n";
+				result += "\t}\n";
                 break;
             case 9: // quat
                 result += "\t{\n";
                 result += "\t\tci::vec3 euler_" + name + " = glm::eulerAngles(" + varName + ");\n";
-                result += "\t\tImGui::SetNextItemWidth(m_drawSize.x);\n";
-                result += "\t\tif (ImGui::SliderFloat3(\"" + name + "\", &euler_" + name + ".x, -3.14f, 3.14f)) {\n";
+                result += "\t\tImGui::SetNextItemWidth(m_drawSize);\n";
+                result += "\t\tif (ImGui::SliderFloat3(\"" + name + "\", &euler_" + name + ", -3.14f, 3.14f)) {\n";
                 result += "\t\t\t" + varName + " = ci::quat(euler_" + name + ");\n";
                 result += "\t\t\tprvntDrag = true;\n";
                 result += "\t\t}\n";

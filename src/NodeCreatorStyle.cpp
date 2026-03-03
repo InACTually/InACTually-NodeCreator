@@ -16,7 +16,7 @@
 
 #include "NodeCreatorStyle.hpp"
 
-#include "./../../3rd/IconFontCppHeaders/IconsFontAwesome5.h"
+#include "./../../../3rd/IconFontCppHeaders/IconsFontAwesome5.h"
 #include <cmath>
 
 ImVec4 act::nc::NodeCreatorColors::darkPrimary(float alpha) {
@@ -141,8 +141,8 @@ void act::nc::NodeCreatorStyle::apply() {
     style.PopupRounding = 3;
     style.WindowPadding = ImVec2(4, 4);
 
-    int paddingX = round(fontSize * (2.0f / 3.0f));
-    int paddingY = round(paddingX * 0.625f);
+    float paddingX = round(fontSize * (2.0f / 3.0f));
+    float paddingY = round(paddingX * 0.625f);
 
     style.FramePadding = ImVec2(paddingX, paddingY);
     style.ItemSpacing = ImVec2(6, 2);
@@ -151,7 +151,7 @@ void act::nc::NodeCreatorStyle::apply() {
     style.WindowBorderSize = 1;
     style.ChildBorderSize = 1;
     style.PopupBorderSize = 1;
-    style.FrameBorderSize = is3D;
+    style.FrameBorderSize = (float)is3D;
 
     style.WindowRounding = 3;
     style.ChildRounding = 3;
@@ -160,7 +160,7 @@ void act::nc::NodeCreatorStyle::apply() {
     style.GrabRounding = 3;
 
 #ifdef IMGUI_HAS_DOCK
-    style.TabBorderSize = is3D;
+    style.TabBorderSize = (float)is3D;
     style.TabRounding = 3;
 
     colors[ImGuiCol_DockingEmptyBg] = bg;
